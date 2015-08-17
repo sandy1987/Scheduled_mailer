@@ -1,4 +1,4 @@
-<%= form_for(@my_mailer) do |f| %>
+<%= form_for(@my_mailer,validate: true) do |f| %>
   <% if @my_mailer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@my_mailer.errors.count, "error") %> prohibited this my_mailer from being saved:</h2>
@@ -13,19 +13,19 @@
 
   <div class="field">
     <%= f.label :schedule_time %><br>
-    <%= f.datetime_select :schedule_time %>
+    <%= f.datetime_select :schedule_time, validate: true %>
   </div>
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, validate: true %>
   </div>
   <div class="field">
     <%= f.label :subject %><br>
-    <%= f.text_field :subject %>
+    <%= f.text_field :subject, validate: true %>
   </div>
   <div class="field">
     <%= f.label :body %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, validate: true %>
   </div>
   <div class="actions">
     <%= f.submit %>
