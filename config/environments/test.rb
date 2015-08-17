@@ -52,7 +52,7 @@ config.action_mailer.smtp_settings = {
   domain: "gmail.com",
   authentication: "plain",
   #enable_starttls_auto: true,
-  user_name: "vijayshriyuvasoft139@gmail.com",
-  password: "qwxhxzwemednfudo"
+  user_name: ENV['owner_email'], 
+  password: ENV['owner_password']
 }
 end
