@@ -16,11 +16,16 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'capybara'
+
+  include Capybara::DSL
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+
   config.expect_with :rspec do |expectations|
+     # expectations.syntax = [:should, :expect]
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
     # defined using `chain`, e.g.:
@@ -89,4 +94,14 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  # def set_current_program(user_id)
+  #   session[:not_confirmed_user_id] = user_id
+  # end
+
 end
+
+
+#Forces all threads to share the same connection. This works on
+#Capybara because it starts the web server in a thread.
+
+
