@@ -1,0 +1,5 @@
+class ScheduleMail < Struct.new(:contact) 
+   def perform
+     OutboundMailer.deliver_scheduled_email(contact)
+   end
+ end

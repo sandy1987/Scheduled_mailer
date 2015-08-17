@@ -1,0 +1,15 @@
+<html> 
+<head> 
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" /> 
+</head> 
+	<body> 
+		<h1>Welcome to my_scheduler.com, <%= @user.email %></h1> 
+		<h1>
+			<%= @user.subject%>
+		</h1>
+		<p><%= @user.body%> </p> 
+		<p>Thanks for joining and have a great day!
+		Sent on: <%= @user.schedule_time%>
+		</p> 
+	</body> 
+</html>

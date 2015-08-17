@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Schedule time:</strong>
+  <%= @my_mailer.schedule_time %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @my_mailer.email %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @my_mailer.subject %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @my_mailer.body %>
+</p>
+
+<%= link_to 'Edit', edit_my_mailer_path(@my_mailer) %> |
+<%= link_to 'Back', my_mailers_path %>

@@ -1,0 +1,5 @@
+class ScheduleMailJob < Struct.new(:contact) 
+   def perform
+     UserMailer.scheduled_email(:contact).deliver
+   end
+ end
