@@ -4,7 +4,7 @@ class MyMailersController < ApplicationController
   # GET /my_mailers
   # GET /my_mailers.json
   def index
-    @my_mailers = MyMailer.all
+    @my_mailers = MyMailer.get_mailers
   end
 
   # GET /my_mailers/1
@@ -24,13 +24,14 @@ class MyMailersController < ApplicationController
   # POST /my_mailers
   # POST /my_mailers.json
   def create
-    @my_mailer = MyMailer.new(my_mailer_params)
+    set_mailer
     respond_to do |format|
-      #UserMailer.scheduled_email(@my_mailer).deliver
       if @my_mailer.save
-        Delayed::Job.enqueue(ScheduleMailJob.new(@my_mailer), :run_at => @my_mailer.schedule_time)
-        format.html { redirect_to @my_mailer, notice: 'My mailer was successfully created.' }
-        format.json { render :show, status: :created, location: @my_mailer }
+        job = Delayed::Job.enqueue(ScheduleMailJob.new(@my_mailer), :run_at => @my_mailer.schedule_time)
+        job.owner_id =  @my_mailer.id
+        job.save!
+        format.html { redirect_to my_mailers_url, notice: 'Mail was successfully scheduled.' }
+        format.json { render :index, status: :created, location: @my_mailer }
       else
         format.html { render :new }
         format.json { render json: @my_mailer.errors, status: :unprocessable_entity }
@@ -71,5 +72,10 @@ class MyMailersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def my_mailer_params
       params.require(:my_mailer).permit(:schedule_time, :email, :subject, :body)
+    end
+
+    def set_mailer
+      @my_mailers = MyMailer.all
+      @my_mailer = MyMailer.new(my_mailer_params)
     end
 end

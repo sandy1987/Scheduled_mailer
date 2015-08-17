@@ -1,15 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing My Mailers</h1>
+<h1>Scheduled Mailers</h1>
 
 <table>
   <thead>
     <tr>
       <th>Schedule time</th>
+      <th></th>
+      <th></th>
       <th>Email</th>
-      <th>Subject</th>
-      <th>Body</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -17,12 +16,9 @@
     <% @my_mailers.each do |my_mailer| %>
       <tr>
         <td><%= my_mailer.schedule_time %></td>
+        <td></td>
+        <th></th>
         <td><%= my_mailer.email %></td>
-        <td><%= my_mailer.subject %></td>
-        <td><%= my_mailer.body %></td>
-        <td><%= link_to 'Show', my_mailer %></td>
-        <td><%= link_to 'Edit', edit_my_mailer_path(my_mailer) %></td>
-        <td><%= link_to 'Destroy', my_mailer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
